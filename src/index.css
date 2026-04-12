@@ -1,0 +1,156 @@
+/* ============================================================
+   index.css — Portfolio Alex Rakoto
+   NE PAS mélanger avec le CSS template Vite par défaut !
+   ============================================================ */
+
+/* ── Fonts Google ────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Space+Mono:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Reset & Base ────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* ANNULE le font-size du template Vite */
+    font-size: 16px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* ANNULE background/color du template */
+    background: transparent;
+    color: inherit;
+    /* ANNULE letter-spacing global du template */
+    letter-spacing: normal;
+    line-height: normal;
+    /* ANNULE color-scheme qui force le dark mode système */
+    color-scheme: normal;
+  }
+
+  /* ANNULE la largeur fixe 1126px du template sur #root */
+  #root {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    text-align: left !important;
+    border: none !important;
+    min-height: 100vh;
+    display: block !important;
+  }
+
+  /* ANNULE les styles h1/h2 du template */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Syne', sans-serif;
+    font-weight: inherit;
+    color: inherit;
+    margin: 0;
+    letter-spacing: normal;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  /* ANNULE les styles p du template */
+  p {
+    margin: 0;
+  }
+
+  /* ANNULE les styles a du template */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  img, svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Classes de police personnalisées */
+  .font-display { font-family: 'Syne', sans-serif !important; }
+  .font-mono    { font-family: 'Space Mono', monospace !important; }
+  .font-body    { font-family: 'DM Sans', sans-serif !important; }
+}
+
+/* ── Keyframe Animations ─────────────────────────────────── */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(36px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes pulseSlow {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.04); }
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(130px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(130px) rotate(-360deg); }
+}
+
+@keyframes floatOrb {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(30px, -30px) scale(1.05); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── Classes utilitaires personnalisées ──────────────────── */
+@layer utilities {
+  .animate-blink        { animation: blink 1s step-end infinite; }
+  .animate-spin         { animation: spin 0.8s linear infinite; }
+  .animate-float        { animation: floatOrb 6s ease-in-out infinite alternate; }
+  .animate-pulse-slow   { animation: pulseSlow 4s ease-in-out infinite; }
+  .animate-fade-in-right{ animation: fadeInRight 0.4s ease both; }
+  .animate-slide-up     { animation: slideUp 0.7s ease both; }
+}
+
+/* ── Scrollbar personnalisée ─────────────────────────────── */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 245, 160, 0.3);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 245, 160, 0.6);
+}
+
+/* ── Sélection de texte ──────────────────────────────────── */
+::selection {
+  background: rgba(0, 245, 160, 0.22);
+  color: inherit;
+}
