@@ -316,20 +316,6 @@
 
 @media (max-width: 768px) {
 
-  /* NAVBAR */
-  .navbar-inner {
-    flex-direction: column !important;
-    gap: 15px !important;
-    padding: 15px 0 !important;
-    height: auto !important;
-  }
-
-  .navbar-links {
-    gap: 1rem !important;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
   /* HERO */
   .hero-section {
     padding-top: 120px !important;

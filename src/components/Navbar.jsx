@@ -4,6 +4,15 @@ import { NAV_LINKS } from "../data/portfolioData";
 export default function Navbar({ dark, setDark, active, setActive }) {
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 768);
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,10 +31,12 @@ export default function Navbar({ dark, setDark, active, setActive }) {
 
   const scrollTo = (id) => {
     setActive(id);
+    setMenuOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
+    <>
     <nav style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
       background: scrolled ? (dark ? "rgba(8,8,16,0.92)" : "rgba(250, 248, 242, 0.92)") : "transparent",
@@ -34,11 +45,38 @@ export default function Navbar({ dark, setDark, active, setActive }) {
       transition: "all 0.4s ease",
       padding: "0 2rem",
     }}>
-      <div className="navbar-inner" style={{ maxWidth: 1100, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", minHeight: 68 }}>
+      <div className="navbar-inner" style={{ 
+        maxWidth: 1100, margin: "0 auto", display: "flex", 
+        alignItems: "center", justifyContent: "space-between", minHeight: 68,
+        flexDirection: isMobile ? "row-reverse" : "row"
+      }}>
         <div className="navbar-logo" style={{ fontFamily: "'Space Mono', monospace", fontWeight: 700, fontSize: 20, letterSpacing: "-0.5px" }}>
           <span className={dark ? "logo-shine-dark" : "logo-shine-light"}>&lt;R.Yannick Mariano/&gt;</span>
         </div>
-        <div className="navbar-links" style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
+        
+        {isMobile && (
+          <button onClick={() => setMenuOpen(!menuOpen)} style={{
+            background: "transparent", border: "none", fontSize: 28,
+            cursor: "pointer", color: dark ? "#fff" : "#0a0a0f",
+            display: "flex", alignItems: "center", justifyContent: "center"
+          }}>
+            {menuOpen ? "✕" : "☰"}
+          </button>
+        )}
+
+        <div className="navbar-links" style={{ 
+          display: isMobile ? (menuOpen ? "flex" : "none") : "flex", 
+          flexDirection: isMobile ? "column" : "row",
+          gap: isMobile ? "1.5rem" : "2rem", 
+          alignItems: "center",
+          ...(isMobile && {
+             position: "absolute", top: 68, left: 0, right: 0,
+             background: dark ? "rgba(10,10,20,0.98)" : "rgba(255,255,255,0.98)",
+             padding: "2rem 0",
+             borderBottom: `1px solid ${dark ? "rgba(0,168,255,0.15)" : "rgba(0,0,0,0.08)"}`,
+             boxShadow: "0 15px 30px rgba(0,0,0,0.3)"
+          })
+        }}>
           {NAV_LINKS.map(l => (
             <button key={l} onClick={() => scrollTo(l.toLowerCase())}
               style={{
@@ -82,5 +120,34 @@ export default function Navbar({ dark, setDark, active, setActive }) {
 
       />
     </nav>
+    
+    {/* SCROLL TO TOP BUTTON */}
+    {scrolled && (
+      <button 
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        style={{
+          position: "fixed", bottom: 30, right: 30, zIndex: 999,
+          width: 50, height: 50, borderRadius: "50%",
+          background: dark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.8)",
+          backdropFilter: "blur(10px)",
+          color: dark ? "#fff" : "#fff",
+          border: `1px solid ${dark ? "rgba(255,255,255,0.2)" : "transparent"}`,
+          cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+          boxShadow: "0 4px 15px rgba(0,0,0,0.3)",
+          fontSize: 24, transition: "all 0.3s",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = "scale(1.1) translateY(-3px)";
+          e.currentTarget.style.background = dark ? "rgba(255,255,255,0.2)" : "#00a8ff";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = "scale(1) translateY(0)";
+          e.currentTarget.style.background = dark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.8)";
+        }}
+      >
+        ↑
+      </button>
+    )}
+    </>
   );
 }
