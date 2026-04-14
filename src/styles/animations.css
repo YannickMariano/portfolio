@@ -9,7 +9,7 @@
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes barFill { from { width: 0; } to { width: var(--w); } }
 @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-@keyframes glitch { 0% { text-shadow: 2px 0 #00f5a0, -2px 0 #7c3aed; } 25% { text-shadow: -2px 0 #00f5a0, 2px 0 #7c3aed; } 50% { text-shadow: 2px 2px #00f5a0, -2px -2px #7c3aed; } 75% { text-shadow: -2px 2px #00f5a0, 2px -2px #7c3aed; } 100% { text-shadow: 2px 0 #00f5a0, -2px 0 #7c3aed; } }
+@keyframes glitch { 0% { text-shadow: 2px 0 #00a8ff, -2px 0 #7c3aed; } 25% { text-shadow: -2px 0 #00a8ff, 2px 0 #7c3aed; } 50% { text-shadow: 2px 2px #00a8ff, -2px -2px #7c3aed; } 75% { text-shadow: -2px 2px #00a8ff, 2px -2px #7c3aed; } 100% { text-shadow: 2px 0 #00a8ff, -2px 0 #7c3aed; } }
 @keyframes orbit { from { transform: rotate(0deg) translateX(120px) rotate(0deg); } to { transform: rotate(360deg) translateX(120px) rotate(-360deg); } }
 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 @keyframes cardIn { from { opacity: 0; transform: translateY(60px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }

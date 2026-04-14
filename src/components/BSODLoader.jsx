@@ -227,7 +227,7 @@ export default function BSODLoader({ onDone }) {
               width:        Math.random() * 6 + 2,
               height:       Math.random() * 6 + 2,
               borderRadius: "50%",
-              background:   ["#00f5a0","#00d4ff","#7c3aed","#f59e0b"][i%4],
+              background:   ["#00a8ff","#00d4ff","#7c3aed","#f59e0b"][i%4],
               top:          `${Math.random()*100}%`,
               left:         `${Math.random()*100}%`,
               animation:    `particle ${0.8+Math.random()*1.2}s ease-out both`,
@@ -239,14 +239,14 @@ export default function BSODLoader({ onDone }) {
           <div style={{
             width:      120,
             height:     2,
-            background: "linear-gradient(90deg,transparent,#00f5a0,transparent)",
+            background: "linear-gradient(90deg,transparent,#00a8ff,transparent)",
             marginBottom: 8,
             animation:  "lineExpand 0.6s ease 0.3s both",
           }} />
 
           {/* Texte de bienvenue */}
           <div style={{
-            color:      "#00f5a0",
+            color:      "#00a8ff",
             fontSize:   "clamp(14px,1.3vw,16px)",
             fontFamily: "'Space Mono', monospace",
             letterSpacing: "0.28em",
@@ -267,7 +267,7 @@ export default function BSODLoader({ onDone }) {
             opacity:    0,
           }}>
             Bienvenue dans<br />
-            <span style={{ color: "#00f5a0" }}>mon portfolio</span>
+            <span style={{ color: "#00a8ff" }}>mon portfolio</span>
           </div>
 
           <div style={{

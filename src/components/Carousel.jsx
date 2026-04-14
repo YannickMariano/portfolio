@@ -67,7 +67,7 @@ export default function Carousel({ items, dark, renderItem }) {
           transition: "all 0.3s",
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.background = "#00f5a0";
+          e.currentTarget.style.background = "#00a8ff";
           e.currentTarget.style.color = "#000";
         }}
         onMouseLeave={(e) => {
@@ -99,7 +99,7 @@ export default function Carousel({ items, dark, renderItem }) {
           transition: "all 0.3s",
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.background = "#00f5a0";
+          e.currentTarget.style.background = "#00a8ff";
           e.currentTarget.style.color = "#000";
         }}
         onMouseLeave={(e) => {
@@ -125,7 +125,7 @@ export default function Carousel({ items, dark, renderItem }) {
               width: currentIndex === index ? 40 : 10,
               height: 10,
               borderRadius: 10,
-              background: currentIndex === index ? "#00f5a0" : dark ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.15)",
+              background: currentIndex === index ? "#00a8ff" : dark ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.15)",
               border: "none",
               cursor: "pointer",
               transition: "all 0.3s ease",

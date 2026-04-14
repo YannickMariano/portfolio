@@ -64,7 +64,7 @@ export const PROJECTS = [
     title: "Gestion de Transactions Financières",
     desc: "Conception et Réalisation d'une application de gestion de transactions financières.",
     tech: ["JSP", "Node.js", "PostgreSQL"],
-    color: "#00f5a0",
+    color: "#00a8ff",
     icon: "/Transaction.png",
     link: "https://github.com/YannickMariano/Transfert_argent_jsp",
     stars: 5,
@@ -74,7 +74,7 @@ export const PROJECTS = [
     title: "Problème de Flot Maximum",
     desc: "Réalisation d'un système de résolution du problème de flot maximum dans les graphes.",
     tech: ["JavaScript"],
-    color: "#3a9fed",
+    color: "#ed3a3aff",
     icon: "/Flot_Max.png",
     link: "https://github.com/YannickMariano/Flot_Max/tree/full",
     stars: 5,
@@ -84,7 +84,7 @@ export const PROJECTS = [
     title: "Gestion de Permis de Travail",
     desc: "Réalisation d'une application de gestion de permis de travail.",
     tech: ["JAVA", "PostgreSQL"],
-    color: "#f59e0b",
+    color: "#0bf588ff",
     icon: "/Note.png",
     link: "https://github.com/YannickMariano/HSE_Project/tree/master",
     stars: 5,
@@ -95,7 +95,7 @@ export const PROJECTS = [
     title: "Gestion Restaurant",
     desc: "Conception et Réalisation d'une application de gestion de Restaurant Caisse et Stock.",
     tech: ["C#", "PostgreSQL"],
-    color: "#3a9fed",
+    color: "#ed3acfff",
     icon: "/Resto.png",
     link: "https://github.com/ROHY-enteprise/Nick-sProject",
     stars: 5,
@@ -153,7 +153,7 @@ export const EXPERIENCES = [
       "Facilitation des Taches pour les Utilisateurs",
       "Mise en place de l'architecture microservices"
     ],
-    color: "#00f5a0",
+    color: "#00eaffff",
     icon: "/NormaService.jpg",
   },
   {
@@ -168,7 +168,7 @@ export const EXPERIENCES = [
       "Intégration d'API d'IA pour feedback en temps réel",
       "Génération de rapports d'entretien automatisés"
     ],
-    color: "#7c3aed",
+    color: "#b4fe20ff",
     icon: "/Arato.png",
   },
   {
@@ -182,7 +182,7 @@ export const EXPERIENCES = [
       "Mise en place d'un système de gestion des stocks qui a réduit les coûts de 15%",
       "Mis en place d'un gestion de Budget efficace pour optimiser les dépenses",
     ],
-    color: "#f59e0b",
+    color: "#d414c4ff",
     icon: "/Resto.png",
   },
   

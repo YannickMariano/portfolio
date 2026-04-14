@@ -7,7 +7,7 @@ export default function Experience({ dark }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [animatedItems, setAnimatedItems] = useState({});
   const [progressHeight, setProgressHeight] = useState(0);
-  
+
   const cardsRef = useRef([]);
   const timelineRef = useRef(null);
   const progressRef = useRef(null);
@@ -51,7 +51,7 @@ export default function Experience({ dark }) {
         const elementTop = timelineRect.top + scrollTop;
         const elementBottom = elementTop + timelineRect.height;
         const currentScroll = window.scrollY + windowHeight * 0.6;
-        
+
         let progress = 0;
         if (currentScroll > elementTop) {
           progress = Math.min(100, ((currentScroll - elementTop) / (elementBottom - elementTop)) * 100);
@@ -63,7 +63,7 @@ export default function Experience({ dark }) {
     updateProgress();
     window.addEventListener('scroll', updateProgress);
     window.addEventListener('resize', updateProgress);
-    
+
     return () => {
       window.removeEventListener('scroll', updateProgress);
       window.removeEventListener('resize', updateProgress);
@@ -76,23 +76,24 @@ export default function Experience({ dark }) {
         style={{
           position: "absolute",
           inset: 0,
-          background: dark ? "rgba(0,245,160,0.02)" : "rgba(0,0,0,0.015)",
+          background: dark ? "rgba(0,168,255,0.02)" : "rgba(0,0,0,0.015)",
           zIndex: -1,
         }}
       />
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 60 }}>
           <div
+            className={dark ? "logo-shine-dark" : "logo-shine-light"}
             style={{
               fontFamily: "'Space Mono', monospace",
               fontSize: 12,
-              color: "#00f5a0",
               letterSpacing: "0.3em",
               textTransform: "uppercase",
               marginBottom: 12,
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(20px)",
-              transition: "all 0.6s ease",
+              filter: visible ? "blur(0px)" : "blur(8px)",
+              transition: "all 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
             }}
           >
             // Mon parcours
@@ -104,17 +105,18 @@ export default function Experience({ dark }) {
               fontWeight: 800,
               color: dark ? "#fff" : "#0a0a0f",
               opacity: visible ? 1 : 0,
-              transform: visible ? "none" : "translateY(30px)",
-              transition: "all 0.8s ease",
+              transform: visible ? "none" : "translateY(40px) scale(0.9) skewY(2deg)",
+              filter: visible ? "blur(0px)" : "blur(12px)",
+              transition: "all 0.9s cubic-bezier(0.16, 1, 0.3, 1)",
             }}
           >
-            Expérience <span style={{ color: "#00f5a0" }}>Professionnelle</span>
+            Expérience <span style={{ color: "#00a8ff" }}>Professionnelle</span>
           </h2>
         </div>
 
         <div style={{ position: "relative", maxWidth: 900, margin: "0 auto" }}>
           {/* Timeline centrale avec barre de progression */}
-          <div
+          <div className="timeline-line"
             ref={timelineRef}
             style={{
               position: "absolute",
@@ -123,7 +125,7 @@ export default function Experience({ dark }) {
               top: 40,
               bottom: 40,
               width: 3,
-              background: dark ? "rgba(0,245,160,0.15)" : "rgba(0,0,0,0.08)",
+              background: dark ? "rgba(0,168,255,0.15)" : "rgba(0,0,0,0.08)",
               borderRadius: 3,
               zIndex: 1,
             }}
@@ -137,7 +139,7 @@ export default function Experience({ dark }) {
                 left: 0,
                 right: 0,
                 height: `${progressHeight}%`,
-                background: `linear-gradient(180deg, #00f5a0, #00d4ff)`,
+                background: `linear-gradient(180deg, #00f5a0, #00d4ff, #7c3aed, #ec4899)`,
                 borderRadius: 3,
                 transition: "height 0.3s ease-out",
                 boxShadow: "0 0 10px rgba(0,245,160,0.5)",
@@ -167,7 +169,7 @@ export default function Experience({ dark }) {
                 onMouseLeave={() => setHoveredIndex(null)}
               >
                 {/* Timeline dot central */}
-                <div
+                <div className="timeline-dot"
                   style={{
                     position: "absolute",
                     left: "50%",
@@ -178,8 +180,8 @@ export default function Experience({ dark }) {
                     borderRadius: "50%",
                     background: exp.color,
                     border: `3px solid ${dark ? "#08080f" : "#fff"}`,
-                    boxShadow: hoveredIndex === index 
-                      ? `0 0 0 8px ${exp.color}40, 0 0 30px ${exp.color}` 
+                    boxShadow: hoveredIndex === index
+                      ? `0 0 0 8px ${exp.color}40, 0 0 30px ${exp.color}`
                       : `0 0 0 4px ${exp.color}30`,
                     zIndex: 3,
                     transition: "all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)",
@@ -189,7 +191,7 @@ export default function Experience({ dark }) {
 
                 {/* Pulsating ring sur le dot */}
                 {hoveredIndex === index && (
-                  <div
+                  <div className="timeline-pulse"
                     style={{
                       position: "absolute",
                       left: "50%",
@@ -208,7 +210,7 @@ export default function Experience({ dark }) {
                 )}
 
                 {/* Carte en zig-zag */}
-                <div
+                <div className="timeline-card"
                   style={{
                     width: "calc(50% - 60px)",
                     marginLeft: cardPosition === "left" ? 0 : "auto",
@@ -216,18 +218,17 @@ export default function Experience({ dark }) {
                     background: dark
                       ? "linear-gradient(135deg,rgba(255,255,255,0.03),rgba(255,255,255,0.06))"
                       : "linear-gradient(135deg,rgba(0,0,0,0.02),rgba(0,0,0,0.04))",
-                    border: `1px solid ${
-                      hoveredIndex === index
+                    border: `1px solid ${hoveredIndex === index
                         ? exp.color
                         : dark
-                        ? "rgba(255,255,255,0.08)"
-                        : "rgba(0,0,0,0.08)"
-                    }`,
+                          ? "rgba(255,255,255,0.08)"
+                          : "rgba(0,0,0,0.08)"
+                      }`,
                     borderRadius: 20,
                     padding: "24px 28px",
                     transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                    transform: hoveredIndex === index 
-                      ? `translateY(-6px) ${cardPosition === "left" ? "translateX(8px)" : "translateX(-8px)"}` 
+                    transform: hoveredIndex === index
+                      ? `translateY(-6px) ${cardPosition === "left" ? "translateX(8px)" : "translateX(-8px)"}`
                       : "translateY(0) translateX(0)",
                     boxShadow: hoveredIndex === index
                       ? `0 20px 40px ${exp.color}30, 0 0 0 1px ${exp.color}`
@@ -239,7 +240,7 @@ export default function Experience({ dark }) {
                   }}
                 >
                   {/* Flèche de connexion vers la timeline */}
-                  <div
+                  <div className="arrow-connector"
                     style={{
                       position: "absolute",
                       top: 20,
@@ -278,8 +279,8 @@ export default function Experience({ dark }) {
                       }}
                     >
                       {typeof exp.icon === 'string' && (exp.icon.startsWith('/') || exp.icon.startsWith('http')) ? (
-                        <img 
-                          src={exp.icon} 
+                        <img
+                          src={exp.icon}
                           alt={exp.title}
                           style={{ width: 36, height: 36, objectFit: "contain" }}
                         />
@@ -399,7 +400,7 @@ export default function Experience({ dark }) {
                       zIndex: 1,
                     }}
                   >
-                   
+
                   </div>
                 </div>
               </div>

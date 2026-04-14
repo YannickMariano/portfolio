@@ -110,7 +110,7 @@ export default function SpaceBackground({ dark }) {
     // ─────────────────────────────────────────────────────
     const nebulae = [
       { x: canvas.width * 0.1,  y: canvas.height * 0.15, r: 280, color: "124,58,237",  a: 0.045, phase: 0, driftSpd: 0.0018 },
-      { x: canvas.width * 0.85, y: canvas.height * 0.25, r: 230, color: "0,245,160",   a: 0.032, phase: 1, driftSpd: 0.0022 },
+      { x: canvas.width * 0.85, y: canvas.height * 0.25, r: 230, color: "0,168,255",   a: 0.032, phase: 1, driftSpd: 0.0022 },
       { x: canvas.width * 0.5,  y: canvas.height * 0.62, r: 310, color: "0,100,200",   a: 0.028, phase: 2, driftSpd: 0.0015 },
       { x: canvas.width * 0.2,  y: canvas.height * 0.78, r: 200, color: "236,72,153",  a: 0.030, phase: 3, driftSpd: 0.0020 },
     ];
@@ -313,7 +313,7 @@ export default function SpaceBackground({ dark }) {
         len: Math.random() * 150 + 70,
         alpha: 1,
         width: Math.random() * 1.6 + 0.4,
-        color: Math.random() > 0.5 ? "0,245,160" : "0,212,255",
+        color: Math.random() > 0.5 ? "0,168,255" : "0,212,255",
       });
     }
 

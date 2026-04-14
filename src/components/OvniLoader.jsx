@@ -16,16 +16,16 @@ function UFOsvg() {
       <ellipse cx="40" cy="32" rx="38" ry="6" fill="#6d28d9"/>
       
       {/* Lumières */}
-      <circle cx="15" cy="30" r="3" fill="#00f5a0">
+      <circle cx="15" cy="30" r="3" fill="#00a8ff">
         <animate attributeName="opacity" values="1;0.3;1" dur="0.5s" repeatCount="indefinite"/>
       </circle>
-      <circle cx="30" cy="32" r="3" fill="#00f5a0">
+      <circle cx="30" cy="32" r="3" fill="#00a8ff">
         <animate attributeName="opacity" values="0.3;1;0.3" dur="0.5s" repeatCount="indefinite"/>
       </circle>
-      <circle cx="50" cy="32" r="3" fill="#00f5a0">
+      <circle cx="50" cy="32" r="3" fill="#00a8ff">
         <animate attributeName="opacity" values="1;0.3;1" dur="0.5s" repeatCount="indefinite"/>
       </circle>
-      <circle cx="65" cy="30" r="3" fill="#00f5a0">
+      <circle cx="65" cy="30" r="3" fill="#00a8ff">
         <animate attributeName="opacity" values="0.3;1;0.3" dur="0.5s" repeatCount="indefinite"/>
       </circle>
       

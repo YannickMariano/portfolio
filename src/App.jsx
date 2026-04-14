@@ -11,6 +11,7 @@ import SpaceLoader      from "./components/SpaceLoader.jsx";
 import OvniLoader       from "./components/OvniLoader";
 import WindowsLoader       from "./components/BSODLoader.jsx";
 import SpaceBackground  from "./components/SpaceBackground";
+import LightBackground  from "./components/LightBackground";
 import Cursor           from "./components/Cursor";
 import Navbar           from "./components/Navbar";
 import Hero             from "./components/Hero";
@@ -48,6 +49,8 @@ export default function App() {
       >
         {/* Canvas étoiles (dark mode uniquement) */}
         <SpaceBackground dark={dark} />
+        {/* Animated Light Background (light mode uniquement) */}
+        <LightBackground dark={dark} />
 
         {/* Tout le contenu passe au-dessus du canvas */}
         <div style={{ position: "relative", zIndex: 1 }}>

@@ -7,7 +7,7 @@ export default function Projects({ dark }) {
   const [hoveredRepo, setHoveredRepo] = useState(null);
   const [hoveredPinned, setHoveredPinned] = useState(null);
   const [animatedItems, setAnimatedItems] = useState({});
-  
+
   // Refs pour les animations individuelles
   const repoRefs = useRef([]);
   const pinnedCol1Refs = useRef([]);
@@ -76,7 +76,7 @@ export default function Projects({ dark }) {
         const col2Height = col2Ref.current.offsetHeight;
         col1Ref.current.style.minHeight = `${col2Height}px`;
       }
-      
+
       for (let i = 0; i < 2; i++) {
         const cardCol2 = cardHeightsRef.current.col2[i];
         const cardCol3 = cardHeightsRef.current.col3[i];
@@ -91,7 +91,7 @@ export default function Projects({ dark }) {
     syncHeights();
     window.addEventListener('resize', syncHeights);
     setTimeout(syncHeights, 100);
-    
+
     return () => window.removeEventListener('resize', syncHeights);
   }, [PROJECTS]);
 
@@ -104,22 +104,23 @@ export default function Projects({ dark }) {
           left: 0,
           right: 0,
           height: 1,
-          background: "linear-gradient(90deg,transparent,rgba(0,245,160,0.4),transparent)",
+          background: "linear-gradient(90deg,transparent,rgba(0,168,255,0.4),transparent)",
         }}
       />
       <div style={{ maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 60 }}>
           <div
+            className={dark ? "logo-shine-dark" : "logo-shine-light"}
             style={{
               fontFamily: "'Space Mono', monospace",
               fontSize: 12,
-              color: "#00f5a0",
               letterSpacing: "0.3em",
               textTransform: "uppercase",
               marginBottom: 12,
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(20px)",
-              transition: "all 0.6s ease",
+              filter: visible ? "blur(0px)" : "blur(8px)",
+              transition: "all 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
             }}
           >
             // Mes réalisations
@@ -132,16 +133,17 @@ export default function Projects({ dark }) {
               color: dark ? "#fff" : "#0a0a0f",
               marginBottom: 16,
               opacity: visible ? 1 : 0,
-              transform: visible ? "none" : "translateY(30px)",
-              transition: "all 0.8s ease",
+              transform: visible ? "none" : "translateY(40px) scale(0.9) skewY(2deg)",
+              filter: visible ? "blur(0px)" : "blur(12px)",
+              transition: "all 0.9s cubic-bezier(0.16, 1, 0.3, 1)",
             }}
           >
-            Projets <span style={{ color: "#00f5a0" }}>Récents</span>
+            Projets <span style={{ color: "#00a8ff" }}>Récents</span>
           </h2>
           <p
+            color="#fff"
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)",
               fontSize: 15,
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(20px)",
@@ -153,7 +155,7 @@ export default function Projects({ dark }) {
         </div>
 
         {/* Structure à 3 colonnes */}
-        <div
+        <div className="projects-grid"
           style={{
             display: "flex",
             gap: 24,
@@ -181,7 +183,7 @@ export default function Projects({ dark }) {
                 fontFamily: "'Space Mono', monospace",
                 fontSize: 14,
                 fontWeight: 700,
-                color: "#00f5a0",
+                color: "#00a8ff",
                 marginBottom: 20,
                 paddingBottom: 12,
                 borderBottom: `1px solid ${dark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}`,
@@ -224,11 +226,10 @@ export default function Projects({ dark }) {
                     background: hoveredRepo === index
                       ? `${repo.color}15`
                       : "transparent",
-                    border: `1px solid ${
-                      hoveredRepo === index
-                        ? repo.color
-                        : "transparent"
-                    }`,
+                    border: `1px solid ${hoveredRepo === index
+                      ? repo.color
+                      : "transparent"
+                      }`,
                     transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                     transform: hoveredRepo === index ? "translateX(4px)" : "translateX(0)",
                     cursor: "pointer",
@@ -255,8 +256,8 @@ export default function Projects({ dark }) {
                         color: hoveredRepo === index
                           ? repo.color
                           : dark
-                          ? "rgba(255,255,255,0.7)"
-                          : "rgba(0,0,0,0.7)",
+                            ? "rgba(255,255,255,0.7)"
+                            : "rgba(0,0,0,0.7)",
                         transition: "color 0.2s",
                       }}
                     >
@@ -311,18 +312,17 @@ export default function Projects({ dark }) {
                   background: dark
                     ? "linear-gradient(135deg,rgba(255,255,255,0.03),rgba(255,255,255,0.06))"
                     : "linear-gradient(135deg,rgba(0,0,0,0.02),rgba(0,0,0,0.04))",
-                  border: `1px solid ${
-                    hoveredPinned === `${project.title}-col1`
-                      ? project.color
-                      : dark
+                  border: `1px solid ${hoveredPinned === `${project.title}-col1`
+                    ? project.color
+                    : dark
                       ? "rgba(255,255,255,0.08)"
                       : "rgba(0,0,0,0.08)"
-                  }`,
+                    }`,
                   borderRadius: 16,
                   padding: 20,
                   transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                  transform: hoveredPinned === `${project.title}-col1` 
-                    ? "translateY(-8px) scale(1.02)" 
+                  transform: hoveredPinned === `${project.title}-col1`
+                    ? "translateY(-8px) scale(1.02)"
                     : "translateY(0) scale(1)",
                   boxShadow:
                     hoveredPinned === `${project.title}-col1`
@@ -331,8 +331,8 @@ export default function Projects({ dark }) {
                   display: "flex",
                   flexDirection: "column",
                   opacity: animatedItems[`pinned1-${index}`] ? 1 : 0,
-                  animation: animatedItems[`pinned1-${index}`] 
-                    ? "cardFloatIn 0.6s cubic-bezier(0.34, 1.2, 0.64, 1) forwards" 
+                  animation: animatedItems[`pinned1-${index}`]
+                    ? "cardFloatIn 0.6s cubic-bezier(0.34, 1.2, 0.64, 1) forwards"
                     : "none",
                   animationDelay: `${index * 0.15}s`,
                 }}
@@ -396,8 +396,8 @@ export default function Projects({ dark }) {
                         borderRadius: 20,
                         padding: "4px 10px",
                         transition: "all 0.2s ease",
-                        animation: animatedItems[`pinned1-${index}`] 
-                          ? "techPopIn 0.3s ease both" 
+                        animation: animatedItems[`pinned1-${index}`]
+                          ? "techPopIn 0.3s ease both"
                           : "none",
                         animationDelay: `${techIndex * 0.03 + 0.3}s`,
                       }}
@@ -492,18 +492,17 @@ export default function Projects({ dark }) {
                   background: dark
                     ? "linear-gradient(135deg,rgba(255,255,255,0.03),rgba(255,255,255,0.06))"
                     : "linear-gradient(135deg,rgba(0,0,0,0.02),rgba(0,0,0,0.04))",
-                  border: `1px solid ${
-                    hoveredPinned === `${project.title}-col2`
-                      ? project.color
-                      : dark
+                  border: `1px solid ${hoveredPinned === `${project.title}-col2`
+                    ? project.color
+                    : dark
                       ? "rgba(255,255,255,0.08)"
                       : "rgba(0,0,0,0.08)"
-                  }`,
+                    }`,
                   borderRadius: 16,
                   padding: 20,
                   transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                  transform: hoveredPinned === `${project.title}-col2` 
-                    ? "translateY(-8px) scale(1.02)" 
+                  transform: hoveredPinned === `${project.title}-col2`
+                    ? "translateY(-8px) scale(1.02)"
                     : "translateY(0) scale(1)",
                   boxShadow:
                     hoveredPinned === `${project.title}-col2`
@@ -512,8 +511,8 @@ export default function Projects({ dark }) {
                   display: "flex",
                   flexDirection: "column",
                   opacity: animatedItems[`pinned2-${index}`] ? 1 : 0,
-                  animation: animatedItems[`pinned2-${index}`] 
-                    ? "cardFloatIn 0.6s cubic-bezier(0.34, 1.2, 0.64, 1) forwards" 
+                  animation: animatedItems[`pinned2-${index}`]
+                    ? "cardFloatIn 0.6s cubic-bezier(0.34, 1.2, 0.64, 1) forwards"
                     : "none",
                   animationDelay: `${(index + 2) * 0.15}s`,
                 }}
@@ -577,8 +576,8 @@ export default function Projects({ dark }) {
                         borderRadius: 20,
                         padding: "4px 10px",
                         transition: "all 0.2s ease",
-                        animation: animatedItems[`pinned2-${index}`] 
-                          ? "techPopIn 0.3s ease both" 
+                        animation: animatedItems[`pinned2-${index}`]
+                          ? "techPopIn 0.3s ease both"
                           : "none",
                         animationDelay: `${techIndex * 0.03 + 0.3}s`,
                       }}
